@@ -5,19 +5,24 @@ const cors = require("cors")
 const morgan = require("morgan")
 require("dotenv").config()
 const colors = require("colors")
+const userRoutes = require("./routes/userRoutes")
 
 // Connect to the database
 require("./config/mongodb_connection").connectMongoDB()
 
-const app = express();
+const app = express()
 
-app.use(morgan('dev'))
+app.use(morgan("dev"))
 app.use(express.json())
-app.use(cors())
 
-app.get("/", (req, res) => {
-    res.send("<h1>Hello from the server</h1>")
-})
+const corsOptions = {
+  origin: ["https://anshumanformal-automatic-orbit-w9r665577g4c9jvg-8081.preview.app.github.dev", "https://anshumanformal-automatic-orbit-w9r665577g4c9jvg-8080.preview.app.github.dev/", "https://anshumanformal-automatic-orbit-w9r665577g4c9jvg-37903.preview.app.github.dev/"],
+}
+
+app.use(cors(corsOptions))
+
+// routes
+app.use("/api/v1/users", userRoutes)
 
 const PORT = 8080 || process.env.PORT
 

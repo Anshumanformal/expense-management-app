@@ -1,6 +1,6 @@
 const UserController = require("./userController")
 
-module.exports.UserController = {
+module.exports.Controller = {
     loginController: UserController.loginController,
     registerController: UserController.registerController
 }
