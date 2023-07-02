@@ -3,6 +3,7 @@ import { Form, Input, message } from "antd"
 import { Link, useNavigate } from "react-router-dom"
 import Spinner from "../components/Spinner"
 import axios from "axios"
+import { registerUrl } from "../utils/urls"
 
 const Register = () => {
   const navigate = useNavigate()
@@ -12,7 +13,7 @@ const Register = () => {
   const formSubmitHandler = async (values) => {
     try {
       setLoading(true)
-      await axios.post("/users/register", values)
+      await axios.post(registerUrl, values)
       message.success("Registration successful")
       setLoading(false)
       navigate("/login")

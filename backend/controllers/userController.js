@@ -21,7 +21,7 @@ const loginController = async(req, res) => {
 }
 const registerController = async(req, res) => {
     try {
-        const newUser = new userModel.create(req.body)
+        const newUser = await userModel.create(req.body)
         await newUser.save()
         res.status(201).json({
             success: true,

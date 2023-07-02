@@ -3,6 +3,7 @@ import { Form, Input, message } from "antd"
 import { Link, useNavigate } from "react-router-dom"
 import Spinner from "../components/Spinner"
 import axios from "axios"
+import { loginUrl } from "../utils/urls"
 
 const Login = () => {
   const navigate = useNavigate()
@@ -12,9 +13,10 @@ const Login = () => {
   const formSubmitHandler = async (values) => {
     try {
       setLoading(true)
-      const { data } = await axios.post("/users/login", values)
+      const { data } = await axios.post(loginUrl, values)
       message.success("Login successful")
       setLoading(false)
+      // Add the login information to local storage
       localStorage.setItem("user", JSON.stringify({ ...data.user, password: "" }))
       navigate("/")
     } catch (error) {

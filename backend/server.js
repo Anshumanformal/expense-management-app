@@ -15,16 +15,17 @@ const app = express()
 app.use(morgan("dev"))
 app.use(express.json())
 
-const corsOptions = {
-  origin: ["https://anshumanformal-automatic-orbit-w9r665577g4c9jvg-8081.preview.app.github.dev", "https://anshumanformal-automatic-orbit-w9r665577g4c9jvg-8080.preview.app.github.dev/", "https://anshumanformal-automatic-orbit-w9r665577g4c9jvg-37903.preview.app.github.dev/"],
-}
+// const corsOptions = {
+//   origin: ["https://anshumanformal-automatic-orbit-w9r665577g4c9jvg-8081.preview.app.github.dev", "https://anshumanformal-automatic-orbit-w9r665577g4c9jvg-8080.preview.app.github.dev/", "https://anshumanformal-automatic-orbit-w9r665577g4c9jvg-37903.preview.app.github.dev/"],
+// }
 
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
+app.use(cors())
 
 // routes
 app.use("/api/v1/users", userRoutes)
 
-const PORT = 8080 || process.env.PORT
+const PORT = process.env.PORT || 8080
 
 app.listen(PORT, ()=>{
     console.log(`Server running on port ${PORT}`.bgWhite)
