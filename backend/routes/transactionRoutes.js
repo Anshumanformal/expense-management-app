@@ -6,6 +6,6 @@ const { Controller } = require("../controllers/index")
 router.post("/add-transaction", Controller.addTransaction)
 
 // Get all transactions of a user
-router.post("/get-all-transactions/:userId", Controller.getAllTransactions)
+router.post("/get-all-transactions", Controller.getAllTransactions)
 
 module.exports = router
