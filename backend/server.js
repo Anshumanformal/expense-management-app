@@ -7,6 +7,7 @@ require("dotenv").config()
 const colors = require("colors")
 const userRoutes = require("./routes/userRoutes")
 const transactionRoutes = require("./routes/transactionRoutes")
+const path = require("path")
 
 // Connect to the database
 require("./config/mongodb_connection").connectMongoDB()
@@ -22,6 +23,12 @@ app.use(express.json())
 
 // app.use(cors(corsOptions))
 app.use(cors())
+
+// Static files
+app.use(express.static(path.join(__dirname, '../client/build')))
+app.get("*", (req, res)=> {
+    res.sendFile(path.join(__dirname, "../client/build/index.html"))
+})
 
 // user routes
 app.use("/api/v1/users", userRoutes)
